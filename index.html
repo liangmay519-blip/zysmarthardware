@@ -55,10 +55,11 @@
             color: #e94560;
         }
 
-        /* Hero Section - Home */
+        /* ========== HERO BANNER WITH BACKGROUND IMAGE ========== */
         .hero {
+            position: relative;
             min-height: 100vh;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: url('images/hero-bg.png') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -67,15 +68,34 @@
             padding: 100px 20px 50px;
         }
 
+        /* Dark overlay for better text readability */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 46, 0.75);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
         .hero-content h1 {
             font-size: 3rem;
             margin-bottom: 20px;
             font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero-content p {
             font-size: 1.3rem;
-            color: #a0a0a0;
+            color: #e0e0e0;
             margin-bottom: 40px;
         }
 
@@ -120,7 +140,7 @@
             color: #1a1a2e;
         }
 
-        /* About Section - Always Visible on Home */
+        /* About Section */
         .about-section {
             padding: 80px 5%;
             max-width: 1200px;
@@ -164,7 +184,6 @@
 
         .product-list li {
             margin-bottom: 8px;
-            position: relative;
         }
 
         .product-list li::marker {
@@ -312,7 +331,7 @@
         </nav>
     </header>
 
-    <!-- ========== HOME PAGE (Always Visible) ========== -->
+    <!-- ========== HERO BANNER WITH BACKGROUND IMAGE ========== -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Professional Drawer Slides & Cabinet Hinges Manufacturer</h1>
@@ -354,11 +373,12 @@
                 <h3>Production Workshop</h3>
             </div>
             <div class="card">
-                <img src="images/products/factory-2.png" alt="Production Equipment">
+                <img src="images/factory/factory-2.png" alt="Production Equipment">
                 <h3>Advanced Equipment</h3>
             </div>
             <div class="card">
                 <img src="images/factory/factory-3.png" alt="Quality Control">
+                <h3>Quality Control</h3>
             </div>
         </div>
     </section>
@@ -465,14 +485,12 @@
                 const targetSection = document.getElementById('section-' + sectionName);
                 targetSection.classList.add('active');
                 
-                // Small delay to allow transition to start, then scroll to section
                 setTimeout(() => {
                     targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 100);
             }
         }
 
-        // Initialize - ensure only home is visible on load
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.collapsible-section').forEach(section => {
                 section.classList.remove('active');
